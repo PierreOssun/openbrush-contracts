@@ -44,7 +44,7 @@ pub const STORAGE_KEY: u32 = openbrush::storage_unique_key!(Data);
 #[openbrush::upgradeable_storage(STORAGE_KEY)]
 pub struct Data {
     /// Asset id of the token on the pallet.
-    pub asset_id: u32,
+    pub asset_id: u128,
     /// Default origin of the contract.
     pub origin: Origin,
     /// Extension to interact with `pallet-assets`
@@ -170,7 +170,7 @@ pub trait Internal {
 
     fn _create(
         &mut self,
-        asset_id: u32,
+        asset_id: u128,
         admin: AccountId,
         min_balance: Balance,
     ) -> Result<(), Error<DefaultEnvironment>>;
@@ -198,7 +198,7 @@ impl<T: Storage<Data>> Internal for T {
 
     fn _create(
         &mut self,
-        asset_id: u32,
+        asset_id: u128,
         admin: AccountId,
         min_balance: Balance,
     ) -> Result<(), Error<DefaultEnvironment>> {
